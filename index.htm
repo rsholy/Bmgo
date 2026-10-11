@@ -1,186 +1,489 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SFS_divya_vrx | BMGO Profile</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sasuke_unchia | Cyber Profile Showcase</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-neon: #00f0ff;
+            --secondary-neon: #7000ff;
+            --accent-glow: #ff007f;
+            --cyan-glow: #00ffcc;
+            --bg-dark: #070913;
+            --card-bg: rgba(15, 23, 42, 0.75);
+            --border-glow: rgba(0, 240, 255, 0.3);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
 
-    body {
-      min-height: 100vh;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(145deg, #090e1c, #152b46, #101322);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Rajdhani', sans-serif;
+        }
 
-    .profile {
-      width: 100%;
-      max-width: 440px;
-      background: #111b2d;
-      border: 1px solid #294667;
-      border-radius: 22px;
-      overflow: hidden;
-      box-shadow: 0 15px 45px #0008;
-    }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(112, 0, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(0, 240, 255, 0.15) 0%, transparent 40%);
+        }
 
-    .banner {
-      height: 125px;
-      background:
-        radial-gradient(circle at 50% 100%, #27d9ff66, transparent 60%),
-        linear-gradient(120deg, #164e63, #312e81, #111827);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 45px;
-    }
+        /* Cyberpunk Grid Overlay */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: 50px 50px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            pointer-events: none;
+            z-index: 0;
+        }
 
-    .content {
-      padding: 25px;
-      text-align: center;
-    }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
 
-    .avatar {
-      width: 85px;
-      height: 85px;
-      margin: -68px auto 15px;
-      position: relative;
-      display: grid;
-      place-items: center;
-      background: #172b45;
-      border: 3px solid #49d8ff;
-      border-radius: 50%;
-      font-size: 38px;
-    }
+        /* Header / Banner Card */
+        .profile-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-glow);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.15), inset 0 0 15px rgba(112, 0, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
 
-    .tag {
-      color: #55dcff;
-      font-size: 12px;
-      letter-spacing: 2px;
-      font-weight: bold;
-    }
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-neon), var(--secondary-neon), var(--accent-glow));
+        }
 
-    h1 {
-      font-size: 25px;
-      margin: 10px 0;
-      overflow-wrap: anywhere;
-    }
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
 
-    .subtitle {
-      color: #a8b9ce;
-      font-size: 14px;
-      margin-bottom: 22px;
-    }
+        .avatar-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+        }
 
-    .wealth {
-      padding: 20px 10px;
-      background: linear-gradient(110deg, #153c43, #17334b);
-      border: 1px solid #27717a;
-      border-radius: 15px;
-      margin-bottom: 20px;
-    }
+        .avatar-frame {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid var(--primary-neon);
+            box-shadow: 0 0 20px var(--primary-neon);
+            overflow: hidden;
+            background: #1e293b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    .wealth small {
-      color: #a8eaf0;
-      font-size: 12px;
-      letter-spacing: 1px;
-    }
+        .avatar-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-    .amount {
-      color: #67f5d0;
-      font-size: 39px;
-      font-weight: 900;
-      margin-top: 7px;
-    }
+        .vip-badge {
+            position: absolute;
+            bottom: -5px;
+            right: -5px;
+            background: linear-gradient(135deg, #ff007f, #7000ff);
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 900;
+            padding: 4px 10px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px var(--accent-glow);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
 
-    .stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      text-align: left;
-    }
+        .profile-info {
+            flex: 1;
+        }
 
-    .stat {
-      padding: 15px;
-      background: #19263a;
-      border-radius: 12px;
-      border: 1px solid #293b53;
-    }
+        .username-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px var(--primary-neon);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-    .stat small {
-      color: #9eafc6;
-      font-size: 11px;
-    }
+        .user-id {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-top: 4px;
+            letter-spacing: 1px;
+        }
 
-    .stat p {
-      margin-top: 7px;
-      font-size: 16px;
-      font-weight: bold;
-    }
+        .clan-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            background: rgba(112, 0, 255, 0.2);
+            border: 1px solid var(--secondary-neon);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 600;
+            color: #d8b4fe;
+        }
 
-    .achievement {
-      margin-top: 18px;
-      padding: 13px;
-      border-radius: 12px;
-      background: #292443;
-      border: 1px solid #57418d;
-      color: #d9c7ff;
-      font-weight: bold;
-      font-size: 13px;
-    }
+        .clan-badge {
+            background: #f59e0b;
+            color: #000;
+            font-weight: 700;
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
 
-    footer {
-      margin-top: 22px;
-      color: #7589a5;
-      font-size: 11px;
-    }
-  </style>
+        .likes-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid var(--primary-neon);
+            padding: 10px 18px;
+            border-radius: 15px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            color: var(--primary-neon);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        }
+
+        /* Bio Banner */
+        .bio-box {
+            margin-top: 1.5rem;
+            padding: 1rem 1.2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 4px solid var(--cyan-glow);
+            border-radius: 0 10px 10px 0;
+        }
+
+        .bio-title {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .bio-text {
+            font-size: 1.1rem;
+            color: var(--cyan-glow);
+            font-weight: 600;
+        }
+
+        /* Stats Grid */
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: var(--primary-neon);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-glow);
+            border-radius: 16px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 240, 255, 0.25);
+            border-color: var(--primary-neon);
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            color: var(--secondary-neon);
+            margin-bottom: 10px;
+        }
+
+        .stat-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        /* Collection Progress Card */
+        .collection-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-glow);
+            border-radius: 16px;
+            padding: 1.8rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .collection-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar-bg {
+            width: 100%;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 1.1%; /* 12/1089 */
+            background: linear-gradient(90deg, var(--primary-neon), var(--accent-glow));
+            box-shadow: 0 0 12px var(--primary-neon);
+            border-radius: 10px;
+        }
+
+        /* Tags Section */
+        .tags-container {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .tag-item {
+            background: rgba(255, 0, 127, 0.15);
+            border: 1px solid var(--accent-glow);
+            color: #ff80bf;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* Action Buttons */
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        .cyber-btn {
+            background: linear-gradient(135deg, var(--primary-neon), var(--secondary-neon));
+            color: #000;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cyber-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.7);
+            color: #fff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .username-title {
+                justify-content: center;
+            }
+
+            .clan-tag {
+                justify-content: center;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
-  <main class="profile">
-    <div class="banner">⚔️</div>
 
-    <div class="content">
-      <div class="avatar">👑</div>
+    <div class="grid-bg"></div>
 
-      <div class="tag">BMGO • PLAYER PROFILE</div>
-      <h1>SFS_divya_vrx</h1>
-      <p class="subtitle">Skyblock Player</p>
+    <div class="container">
+        <!-- Main Profile Banner Card -->
+        <div class="profile-card">
+            <div class="profile-header">
+                <div class="avatar-container">
+                    <div class="avatar-frame">
+                        <i class="fa-solid font-awesome fa-user-astronaut" style="font-size: 3.5rem; color: var(--primary-neon);"></i>
+                    </div>
+                    <span class="vip-badge">VIP0</span>
+                </div>
 
-      <section class="wealth">
-        <small>TOTAL VALUE MADE</small>
-        <div class="amount">100M+</div>
-      </section>
+                <div class="profile-info">
+                    <h1 class="username-title">sasuke_unchia</h1>
+                    <p class="user-id"><i class="fa-solid fa-id-card"></i> ID: 610589839</p>
+                    <div class="clan-tag">
+                        <span class="clan-badge">Chief</span>
+                        <span>Goku clan</span>
+                    </div>
+                </div>
 
-      <section class="stats">
-        <div class="stat">
-          <small>ACHIEVEMENT</small>
-          <p>100M Club</p>
+                <div class="likes-box">
+                    <i class="fa-solid fa-thumbs-up"></i>
+                    <span>346</span>
+                </div>
+            </div>
+
+            <div class="bio-box">
+                <div class="bio-title">Personal Profile</div>
+                <div class="bio-text">Pro bg</div>
+            </div>
         </div>
-        <div class="stat">
-          <small>PLAYER STATUS</small>
-          <p>Skyblock</p>
+
+        <!-- Collection Rate Section -->
+        <div class="collection-card">
+            <div class="collection-header">
+                <span class="section-title" style="margin: 0; font-size: 1.2rem;">
+                    <i class="fa-solid fa-box-open"></i> Collection Rate
+                </span>
+                <span style="font-family: 'Orbitron', sans-serif; font-size: 1.2rem; color: var(--primary-neon); font-weight: 700;">
+                    12 <span style="color: var(--text-muted); font-size: 1rem;">/ 1089</span>
+                </span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill"></div>
+            </div>
         </div>
-      </section>
 
-      <div class="achievement">
-        🏆 100M+ Milestone Unlocked
-      </div>
+        <!-- BG Career Stats Title -->
+        <h2 class="section-title"><i class="fa-solid fa-chart-line"></i> BG Career Data</h2>
 
-      <footer>
-        Fan-made BMGO profile • Player stats are not independently verified
-      </footer>
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <i class="fa-solid fa-gamepad stat-icon"></i>
+                <div class="stat-value">101</div>
+                <div class="stat-label">Games Played</div>
+            </div>
+
+            <div class="stat-card">
+                <i class="fa-solid fa-clock stat-icon"></i>
+                <div class="stat-value">1099.8H</div>
+                <div class="stat-label">Game Duration</div>
+            </div>
+
+            <div class="stat-card">
+                <i class="fa-solid fa-repeat stat-icon"></i>
+                <div class="stat-value">13877</div>
+                <div class="stat-label">Game Rounds</div>
+            </div>
+
+            <div class="stat-card">
+                <i class="fa-solid fa-users stat-icon"></i>
+                <div class="stat-value">479</div>
+                <div class="stat-label">Number of Friends</div>
+            </div>
+
+            <div class="stat-card">
+                <i class="fa-solid fa-shirt stat-icon"></i>
+                <div class="stat-value">96</div>
+                <div class="stat-label">Decorations</div>
+            </div>
+
+            <div class="stat-card">
+                <i class="fa-solid fa-layer-group stat-icon"></i>
+                <div class="stat-value">9</div>
+                <div class="stat-label">Number of Sets</div>
+            </div>
+        </div>
+
+        <!-- Family Tags -->
+        <div class="collection-card">
+            <span class="section-title" style="margin-bottom: 0.5rem; font-size: 1.2rem;">
+                <i class="fa-solid fa-tags"></i> Family Tags
+            </span>
+            <div class="tags-container">
+                <span class="tag-item">Anko's/Yaku's Elder Brother</span>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="btn-group">
+            <button class="cyber-btn"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+        </div>
     </div>
-  </main>
+
 </body>
-  </html>
-  
+              </html>
+                         
